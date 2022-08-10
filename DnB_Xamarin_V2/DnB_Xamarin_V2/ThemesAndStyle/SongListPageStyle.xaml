@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Label" x:Key="LabelErrorMessage">
+        <Setter Property="Margin" Value="5, 0, 0, 0" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="Black" />
+    </Style>
+
+    <Style TargetType="Image" x:Key="SongImageStyle">
+        <Setter Property="WidthRequest" Value="250" />
+        <Setter Property="HeightRequest" Value="135" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelMusicalStyleAndTotalTimeStyle">
+        <Setter Property="FontSize" Value="Caption" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelNameSongStyle">
+        <Setter Property="FontSize" Value="Caption" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    
+    <Style TargetType="Button" x:Key="ButtonPlayPauseStyle">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="ToggleStates">
+                    <VisualState Name="ToggledOff">
+                        <VisualState.Setters>
+                            <Setter Property="Text" Value=" Play " />
+                            <Setter Property="BackgroundColor" Value="Orange" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState Name="ToggledOn">
+                        <VisualState.Setters>
+                            <Setter Property="Text" Value="Pause" />
+                            <Setter Property="BackgroundColor" Value="Orange" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelSelectedNameSongStyle">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="Margin" Value="5, 0, 0, 5" />
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelCurrentTimeSongStyle">
+        <Setter Property="FontSize" Value="Body" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="Margin" Value="5, 0, 5, 0" />
+    </Style>
+
+    <Style TargetType="Slider" x:Key="SliderPositionStyle">
+        <Setter Property="MinimumTrackColor" Value="DarkOrange" />
+        <Setter Property="MaximumTrackColor" Value="Gray" />
+        <Setter Property="ThumbColor" Value="Orange" />
+        <Setter Property="Margin" Value="0, 10, 0, 10" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonAddMixesStyle">
+        <Setter Property="Text" Value="Add mixes" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="Background" Value="Orange" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:DnB_Xamarin_V2.ViewModels"
+             xmlns:toggleBtn="clr-namespace:DnB_Xamarin_V2.ThemesAndStyle"
+             x:Class="DnB_Xamarin_V2.Views.SongListPage">
+
+    <ContentPage.BindingContext>
+        <viewModel:SongListViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition />
+            <RowDefinition Height="170" />
+        </Grid.RowDefinitions>
+
+        <Label Text="{Binding ErrorMessage}" Style="{StaticResource LabelErrorMessage}" />
+
+        <ListView x:Name="songList" Grid.Row="1" SeparatorVisibility="None" ItemsSource="{Binding SongCollection}" 
+                          CachingStrategy="RecycleElement" SelectedItem="{Binding SelectedSong, Mode=TwoWay}" 
+                          RowHeight="150" HasUnevenRows="False" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="5, 5, 0, 5">
+                            <StackLayout.Triggers>
+                                <DataTrigger TargetType="StackLayout" Binding="{Binding SongIsPlaying}" Value="true">
+                                    <Setter Property="Background" Value="Orange"/>
+                                </DataTrigger>
+                            </StackLayout.Triggers>
+                            
+                            <Image Source="{Binding ImageUrl}" Style="{StaticResource SongImageStyle}" />
+                            <StackLayout>
+                                <Label Style="{StaticResource LabelMusicalStyleAndTotalTimeStyle}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding MusicalStyle}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding TotalTime}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Text="{Binding NameSong}" Style="{StaticResource LabelNameSongStyle}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Grid.Row="2">
+            <Label Style="{StaticResource LabelSelectedNameSongStyle}" Text="{Binding NameSong}" />
+            <Grid HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding SongCurrentPosition, StringFormat=\{0:hh\\:mm\\:ss\}}" 
+                       Style="{StaticResource LabelCurrentTimeSongStyle}" HorizontalOptions="Start" />                
+                <toggleBtn:ToggleButton Style="{StaticResource ButtonPlayPauseStyle}" 
+                                        IsToggled="{Binding PlayPauseToggleButton, Mode=TwoWay}" HorizontalOptions="Center" />                
+                <Label Text="{Binding SongDuration, StringFormat=\{0:hh\\:mm\\:ss\}}" 
+                       Style="{StaticResource LabelCurrentTimeSongStyle}" HorizontalOptions="End" />
+            </Grid>
+
+            <Slider Style="{StaticResource SliderPositionStyle}" Value="{Binding TimelineValue, Mode=TwoWay}" 
+                    Minimum="{Binding TimelineMinimum}" Maximum="{Binding TimelineMaximum}" DragCompletedCommand="{Binding RewindSongCommand}" />            
+            <Button Style="{StaticResource ButtonAddMixesStyle}" Command="{Binding AddSongListCommand}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
